@@ -9,10 +9,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Added
 - **commands**: Add `/add-mcp` command integrating mcp-builder, md, and token-formatter skills
+- **mcp-servers**: Add 35 MCP server configurations and references
+  - Official active: everything, fetch, filesystem, memory, sequential-thinking, time
+  - Official archived: git, slack, sqlite
+  - AWS Labs: 64+ servers (documentation, infrastructure, AI/ML, data, operations)
+  - Third-party: Stripe, Netlify, Vercel, Canva, Sentry, PostHog, Atlassian, Monday, Figma, Linear, Notion, Playwright, Puppeteer, Airtable, GCP, MUI, Next.js, Kubernetes, Cloudflare, Codex, Context7, GitHub
+  - Custom implementations with source: MongoDB, Supabase
+  - SDK references for all 10 official MCP SDKs (TypeScript, Python, Go, Rust, Java, Kotlin, C#, Swift, Ruby, PHP)
 
 ### Changed
 - **commands**: Add explicit invocation guards to commit.md and push.md (prevent auto-execution)
 - **readme**: Add Contributing section
+- **readme**: Update with comprehensive MCP server documentation (35 servers, SDK references)
 
 ### Fixed
 
