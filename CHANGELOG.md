@@ -8,11 +8,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ## [Unreleased]
 
 ### Added
-- **skills**: Add pep8 skill for Python 3.11+ style enforcement with check/fix scripts
 
 ### Changed
 
 ### Fixed
+
+## [1.0.5] - 2026-01-05
+
+### Added
+- **skills**: Add pep8 skill for Python 3.11+ style enforcement with check/fix scripts
 
 ## [1.0.4] - 2026-01-05
 
