@@ -71,34 +71,70 @@ Goal: Execute a safe, strictly attributed git commit for **George Khananaev**.
 - **Atomic Commits**: If `git status` shows unrelated changes (e.g., a bug fix in `api/` and a typo in `README`), split them into two separate commits.
 - **Ask User**: "I see changes in X and Y. Should these be separate commits?"
 
-## 7. Changelog Integration
+## 7. Changelog Integration (REQUIRED)
 
-After successful commit, update `CHANGELOG.md` using the `project-change-log` skill:
+**IMPORTANT**: After EVERY successful commit, you MUST update `CHANGELOG.md`.
 
-1. **Check**: Does `CHANGELOG.md` exist in project root?
-   - If no: Create from template (see skill)
-   - If yes: Read current content
+### Step 1: Check/Create CHANGELOG.md
 
-2. **Parse Commit**: Extract type, scope, and description from commit message
+If `CHANGELOG.md` does NOT exist in project root, CREATE it with this template:
 
-3. **Map to Category**:
-   | Commit Type | Changelog Category |
-   |-------------|-------------------|
-   | `feat` | Added |
-   | `fix` | Fixed |
-   | `docs`, `style`, `refactor`, `perf`, `test`, `build`, `ci`, `chore` | Changed |
-   | `security` | Security |
+```markdown
+# Changelog
 
-4. **Add Entry**: Insert under `[Unreleased]` in appropriate category:
-   ```markdown
-   ### Added
-   - **scope**: Description from commit
-   ```
+All notable changes to this project will be documented in this file.
 
-5. **Stage**: `git add CHANGELOG.md`
+The format is based on [Keep a Changelog](https://keepachangelog.com/),
+and this project adheres to [Semantic Versioning](https://semver.org/).
 
-6. **Amend or New Commit**:
-   - If changelog update is minor: Amend the commit with `--amend --no-edit`
-   - If user prefers: Create separate `docs(changelog): update changelog` commit
+## [Unreleased]
 
-**Note**: Reference `.claude/skills/project-change-log/SKILL.md` for full changelog format and conventions.
+### Added
+
+### Changed
+
+### Fixed
+
+```
+
+### Step 2: Parse the Commit Message
+
+Extract from commit: `<type>(<scope>): <description>`
+
+### Step 3: Map Type to Category
+
+| Commit Type | Changelog Category |
+|-------------|-------------------|
+| `feat` | Added |
+| `fix` | Fixed |
+| `docs`, `style`, `refactor`, `perf`, `test`, `build`, `ci`, `chore` | Changed |
+| `security` | Security |
+| `deprecate` | Deprecated |
+| `remove` | Removed |
+
+### Step 4: Add Entry to CHANGELOG.md
+
+Insert under `## [Unreleased]` in the appropriate category section:
+
+- If scope exists: `- **scope**: Description`
+- If no scope: `- Description`
+
+### Step 5: Commit the Changelog
+
+```bash
+git add CHANGELOG.md
+git commit --amend --no-edit
+```
+
+### Example
+
+After commit `feat(auth): add OAuth2 login support`:
+
+```markdown
+## [Unreleased]
+
+### Added
+- **auth**: Add OAuth2 login support
+```
+
+**Reference**: `.claude/skills/project-change-log/SKILL.md` for full format conventions.
