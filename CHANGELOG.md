@@ -8,13 +8,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 ## [Unreleased]
 
 ### Added
+
+### Changed
+
+### Fixed
+
+## [1.0.4] - 2026-01-05
+
+### Added
 - **mcp-servers**: Add chrome-devtools MCP server reference
 
 ### Changed
 - **commands**: Enhance plan-feature with AskUserQuestion tool for interactive requirement gathering
 - **skills**: Streamline fastapi-senior-dev with modular reference files (security, database, caching, observability, microservices, API lifecycle, production ops)
-
-### Fixed
 
 ## [1.0.3] - 2026-01-05
 
