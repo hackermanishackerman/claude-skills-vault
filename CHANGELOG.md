@@ -9,6 +9,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Added
 - **skills**: Add prompt-compressor skill for 40-60% token reduction on verbose prompts with protected content preservation
+- **skills**: Add beautiful-code skill for multi-language code quality (TypeScript, Python, Go, Rust)
+- **skills**: Add materialreacttable-mastery skill for MUI V3 data tables with CRUD, virtualization, server-side ops
+- **skills**: Add nextjs-senior-dev skill for Next.js 15/16 App Router with 20 references, 6 styling-agnostic templates
 
 ### Changed
 - **commands**: Compress plan-feature.md (~54% token reduction)
