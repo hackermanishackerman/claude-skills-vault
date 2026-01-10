@@ -1,14 +1,200 @@
 # Accessibility (A11Y) Inspector
 
-WCAG 2.1 compliance & inclusive design review.
+WCAG 2.2 compliance & inclusive design review.
 
-## WCAG 2.1 Compliance Levels
+> **Updated**: This reference covers WCAG 2.2 (October 2023), including all 9 new success criteria.
+
+## WCAG 2.2 Compliance Levels
 
 | Level | Requirement | Target |
 |-------|-------------|--------|
 | A | Minimum accessibility | Baseline |
 | AA | Acceptable accessibility | **Standard target** |
 | AAA | Enhanced accessibility | Ideal for specific audiences |
+
+---
+
+## WCAG 2.2 New Success Criteria
+
+> Published October 2023. These 9 criteria are additions to WCAG 2.1.
+
+### Level A New Criteria
+
+#### 3.2.6 Consistent Help
+
+| Check | Criteria | Level | Tool |
+|-------|----------|-------|------|
+| Help location | Help mechanism in consistent location | A | Manual |
+| Cross-page consistency | Same position across related pages | A | Manual |
+
+**Implementation:**
+- Place help (contact, chat, FAQ) in same location across all pages
+- Common patterns: footer, persistent header link, floating button
+
+#### 3.3.7 Redundant Entry
+
+| Check | Criteria | Level | Tool |
+|-------|----------|-------|------|
+| No repeat entry | Don't require same info twice in process | A | Manual |
+| Auto-populate | Previously entered data available | A | Manual |
+
+**Implementation:**
+- Auto-fill billing from shipping address
+- Remember user preferences in multi-step forms
+- Session storage for form data
+
+### Level AA New Criteria
+
+#### 2.4.11 Focus Not Obscured (Minimum)
+
+| Check | Criteria | Level | Tool |
+|-------|----------|-------|------|
+| Focus visible | At least part of focused element visible | AA | Manual |
+| Not hidden by sticky | Sticky headers/footers don't fully hide focus | AA | Manual |
+| Not hidden by modals | Background focus not obscured by overlays | AA | Manual |
+
+**Common Violations:**
+```
+❌ Sticky header covers focused nav item
+❌ Cookie banner hides focused form field
+❌ Floating chat widget covers focused button
+```
+
+**Fix Patterns:**
+```css
+/* Ensure scroll position accounts for sticky elements */
+html { scroll-padding-top: 80px; }
+
+/* Or use scroll-margin on focusable elements */
+:focus { scroll-margin-top: 80px; }
+```
+
+#### 2.5.7 Dragging Movements
+
+| Check | Criteria | Level | Tool |
+|-------|----------|-------|------|
+| Single-pointer alternative | Drag operations have click alternative | AA | Manual |
+| No drag required | Essential function achievable without dragging | AA | Manual |
+
+**Requires Alternatives For:**
+- Drag-and-drop file uploads (+ click to select)
+- Slider controls (+ text input or buttons)
+- Sortable lists (+ move up/down buttons)
+- Map panning (+ directional buttons)
+- Canvas drawing (+ alternative input)
+
+**Implementation Example:**
+```html
+<!-- Slider with buttons -->
+<button aria-label="Decrease">-</button>
+<input type="range" />
+<button aria-label="Increase">+</button>
+
+<!-- Or with text input -->
+<input type="number" />
+```
+
+#### 2.5.8 Target Size (Minimum)
+
+| Check | Criteria | Level | Tool |
+|-------|----------|-------|------|
+| Minimum 24×24 CSS px | Interactive targets meet minimum | AA | Manual |
+| Spacing exception | Targets <24px have sufficient spacing | AA | Manual |
+| Inline exception | Inline text links exempt | AA | Manual |
+
+**Size Requirements (Stricter than 2.1):**
+| WCAG Version | AA Requirement | AAA Requirement |
+|--------------|----------------|-----------------|
+| 2.1 | None | 44×44px |
+| 2.2 | 24×24px | 44×44px |
+
+**Exceptions:**
+- Inline links within text paragraphs
+- User-customized targets
+- Essential smaller presentation
+- Targets with 24px+ spacing between
+
+#### 3.3.8 Accessible Authentication (Minimum)
+
+| Check | Criteria | Level | Tool |
+|-------|----------|-------|------|
+| No cognitive function test | Login doesn't require memory/transcription | AA | Manual |
+| Object recognition allowed | Picture selection OK | AA | Manual |
+| Personal content allowed | Identify your own content OK | AA | Manual |
+
+**Prohibited:**
+```
+❌ Type this CAPTCHA text
+❌ Remember and re-type your password
+❌ Solve this puzzle
+❌ Transcribe distorted audio
+```
+
+**Allowed:**
+```
+✅ Password managers (copy-paste enabled)
+✅ Biometric authentication (fingerprint, face)
+✅ Magic link / email verification
+✅ "Select all images with cats" (object recognition)
+✅ SSO / OAuth (delegated authentication)
+✅ Hardware keys / FIDO2
+```
+
+### Level AAA New Criteria
+
+#### 2.4.12 Focus Not Obscured (Enhanced)
+
+| Check | Criteria | Level | Tool |
+|-------|----------|-------|------|
+| Focus fully visible | No part of focus indicator hidden | AAA | Manual |
+
+**Stricter than 2.4.11:** Entire focused element must be visible, not just part.
+
+#### 2.4.13 Focus Appearance
+
+| Check | Criteria | Level | Tool |
+|-------|----------|-------|------|
+| Focus indicator size | ≥2px perimeter | AAA | Manual |
+| Focus contrast | 3:1 against adjacent colors | AAA | Manual |
+| Focus change area | ≥ outline of unfocused + 2px | AAA | Manual |
+
+**Implementation:**
+```css
+:focus-visible {
+  outline: 3px solid #005fcc;
+  outline-offset: 2px;
+}
+```
+
+#### 3.3.9 Accessible Authentication (Enhanced)
+
+| Check | Criteria | Level | Tool |
+|-------|----------|-------|------|
+| No cognitive tests at all | No object recognition either | AAA | Manual |
+
+**Stricter than 3.3.8:** Even object recognition (image selection) prohibited.
+
+---
+
+## WCAG 2.2 Quick Checklist
+
+| Criterion | ID | Level | Status |
+|-----------|-------|-------|--------|
+| Consistent Help | 3.2.6 | A | ☐ |
+| Redundant Entry | 3.3.7 | A | ☐ |
+| Focus Not Obscured (Min) | 2.4.11 | AA | ☐ |
+| Dragging Movements | 2.5.7 | AA | ☐ |
+| Target Size (Min) | 2.5.8 | AA | ☐ |
+| Accessible Auth (Min) | 3.3.8 | AA | ☐ |
+| Focus Not Obscured (Enhanced) | 2.4.12 | AAA | ☐ |
+| Focus Appearance | 2.4.13 | AAA | ☐ |
+| Accessible Auth (Enhanced) | 3.3.9 | AAA | ☐ |
+
+---
+
+## WCAG 2.2 Removed Criterion
+
+**4.1.1 Parsing** has been removed in WCAG 2.2. Modern browsers and assistive technologies handle parsing errors, making this criterion obsolete.
 
 ---
 
