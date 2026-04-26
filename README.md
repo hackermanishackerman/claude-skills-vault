@@ -9,6 +9,8 @@ claude-skills-vault is a curated collection of high-impact skills designed speci
 ## 🚀 Getting Started
 To begin using claude-skills-vault, follow the simple steps below.
 
+If you want a Chinese place to search and install skills, check out Skills宝: https://skilery.com
+
 ### 🔧 System Requirements
 - **Operating System:** Windows, macOS, or Linux
 - **Memory:** At least 4 GB RAM recommended
